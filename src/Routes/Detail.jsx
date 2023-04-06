@@ -35,15 +35,16 @@ const Detail = () => {
       {/* aqui deberan renderizar la informacion en detalle de un user en especifico */}
       {/* Deberan mostrar el name - email - phone - website por cada user en especifico */}
      
-      <div key={dentist.id} className="card"></div>
+      <div key={dentist.id} className="card">
       <img
-        src="images/doctor.jpg"
+        src="/images/doctor.jpg"
         alt=""
         style={{ height: "50%", width: "75%" }}
       />
+      </div>
 
       <ul style={{ listStyle: "none" }}>
-        <li> {dentist.name}</li>
+        <li style={{ color: '#800080', fontSize: '20px', fontWeight: 'bold' }}> {dentist.name}</li>
         <li>Id: {dentist.id}</li>
         <li>{dentist.username}</li>
         <li>Phone: {dentist.phone}</li>

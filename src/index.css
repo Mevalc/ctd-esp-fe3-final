@@ -5,6 +5,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  position: relative;
+  padding-bottom: 5rem;
 }
 
 code {
@@ -44,13 +46,13 @@ a:hover{
 footer {
   display: flex;
   justify-content: center;
+  align-items: flex-end; 
   text-align: center;
-  padding: 2rem;
-  position: relative;
+  padding: 1rem;
+  width: 100%; 
+  position: absolute;
   bottom: 0;
-  width: 90%;
-  height: 40px;
-  margin-top: 2rem;
+ 
 }
 
 footer > img{

@@ -49,7 +49,7 @@ const Form = () => {
       {error ? 'Por favor verifique su información nuevamente' : null}
       {show ?  
         <h3>
-          Gracias {user.nombre} te contactaremos cuando antes vía mail.
+          Thanks {user.nombre} we will contact you as soon as possible via email.
         </h3> : null}
      
     </div>
