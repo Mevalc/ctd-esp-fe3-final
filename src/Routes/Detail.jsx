@@ -1,20 +1,23 @@
-import React, { useEffect, useState, useParams } from "react";
+import { useState, useEffect } from "react";
+import React, { useParams } from "react-router-dom";
 
-
+//ojo con las importaciones
 //Este componente debera ser estilado como "dark" o "light" dependiendo del theme del Context
 
 const Detail = () => {
   // Consumiendo el parametro dinamico de la URL deberan hacer un fetch a un user en especifico
   const [dentist, setDentist] = useState({});
   const {id} = useParams();
-  <h4>Hola</h4>
+  
+  
 
   const url = 'https://jsonplaceholder.typicode.com/users/'+ id
 
   useEffect(() => {
     fetch(url)
       .then((response) => response.json())
-      .then((data) => setDentist(data));
+      .then((data) => setDentist(data))
+      .catch((error) => console.log(error));
   }, [id]);
 
   //lo primero que me traigo es la rta del fetch y lo segundo es la informacion procesada en formato json
