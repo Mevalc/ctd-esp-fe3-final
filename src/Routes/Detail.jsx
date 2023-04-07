@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import React, { useParams } from "react-router-dom";
+import { useState, useEffect, useContext } from "react";
+import { useParams } from "react-router-dom";
 
 //ojo con las importaciones
 //Este componente debera ser estilado como "dark" o "light" dependiendo del theme del Context
@@ -7,11 +7,9 @@ import React, { useParams } from "react-router-dom";
 const Detail = () => {
   // Consumiendo el parametro dinamico de la URL deberan hacer un fetch a un user en especifico
   const [dentist, setDentist] = useState({});
-  const {id} = useParams();
-  
-  
+  const { id } = useParams();
 
-  const url = 'https://jsonplaceholder.typicode.com/users/'+ id
+  const url = "https://jsonplaceholder.typicode.com/users/" + id;
 
   useEffect(() => {
     fetch(url)
@@ -34,23 +32,25 @@ const Detail = () => {
       <h1>Detail Dentist id {dentist.id}</h1>
       {/* aqui deberan renderizar la informacion en detalle de un user en especifico */}
       {/* Deberan mostrar el name - email - phone - website por cada user en especifico */}
-     
+
       <div key={dentist.id} className="card">
-      <img
-        src="/images/doctor.jpg"
-        alt=""
-        style={{ height: "50%", width: "75%" }}
-      />
+        <img
+          src="/images/doctor.jpg"
+          alt=""
+          style={{ height: "50%", width: "75%" }}
+        />
       </div>
 
       <ul style={{ listStyle: "none" }}>
-        <li style={{ color: '#800080', fontSize: '20px', fontWeight: 'bold' }}> {dentist.name}</li>
+        <li style={{ color: "#800080", fontSize: "20px", fontWeight: "bold" }}>
+          {" "}
+          {dentist.name}
+        </li>
         <li>Id: {dentist.id}</li>
         <li>{dentist.username}</li>
         <li>Phone: {dentist.phone}</li>
         <li>Website: {dentist.website}</li>
       </ul>
-     
     </>
   );
 };

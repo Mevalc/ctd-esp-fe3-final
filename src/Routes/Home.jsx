@@ -1,4 +1,4 @@
-import { useState, useEffect,useContext } from "react";
+import { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import Card from "../Components/Card";
 import { ContextGlobal } from "../Components/utils/global.context";
@@ -6,7 +6,7 @@ import { ContextGlobal } from "../Components/utils/global.context";
 //Este componente debera ser estilado como "dark" o "light" dependiendo del theme del Context
 
 const Home = () => {
-  const [dentist,setDentist] = useState([]);
+  const [dentist, setDentist] = useState([]);
   const { theme } = useContext(ContextGlobal);
   
   useEffect(() => {
@@ -27,10 +27,8 @@ const Home = () => {
                 name={dentist.name}
                 username={dentist.username}
                 id={dentist.id}
-                
               />
             </Link>
-            
           </div>
         ))}
       </div>

@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { ContextGlobal } from "../Components/utils/global.context";
 
 
 const Card = ({ name, username, id }) => {
+  const { setData } = useContext(ContextGlobal);
   const addFav = () => {
     // Aqui iria la logica para agregar la Card en el localStorage
 
@@ -16,6 +18,9 @@ const Card = ({ name, username, id }) => {
 
     // Guardar la lista de favoritos actualizada en el localStorage el stringi para pasar como txt plano para poder ser interpretado
     localStorage.setItem("favList", JSON.stringify(favList));
+    
+    setData(favList);
+  
   };
 
   return (
@@ -28,11 +33,11 @@ const Card = ({ name, username, id }) => {
         alt=""
         style={{ height: "50%", width: "75%" }}
       />
-      <h1>{name}</h1>
+      <h1 style={{fontSize: 20}}>{name}</h1>
 
       <ul style={{ listStyle: "none" }}>
-        <li>Id: {id}</li>
-        <li>User:{username}</li>
+        <li>Id:  {id}</li>
+        <li>User: {username}</li>
       </ul>
 
       {/* No debes olvidar que la Card a su vez servira como Link hacia la pagina de detalle */}

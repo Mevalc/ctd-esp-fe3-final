@@ -1,38 +1,54 @@
-import { createContext } from "react";
-import React, { useMemo, useReducer } from 'react';
+import React, {
+  createContext,
+  useMemo,
+  useReducer,
+  useEffect
+} from "react";
 
 export const ContextGlobal = createContext(undefined);
-export const initialState = {theme: "", data: []}
-
+export const initialState = { theme: "", data: [] };
 
 const reducer = (state, action) => {
   switch (action.type) {
-    case 'SET_THEME':
+    case "SET_THEME":
       return { ...state, theme: action.payload };
-    case 'SET_DATA':
+    case "SET_DATA":
       return { ...state, data: action.payload };
     default:
       return state;
   }
 };
 
-
-
 export const ContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  const toggleTheme = () => {
+  useEffect(() => {
+    fetch("https://jsonplaceholder.typicode.com/users")
+      .then((response) => response.json())
+      .then((data) => setData(data))
+      .catch((error) => console.log(error));
+  }, []);
+
+    const toggleTheme = () => {
     const newTheme = state.theme === "light" ? "dark" : "light";
-    dispatch({ type: 'SET_THEME', payload: newTheme });
+    dispatch({ type: "SET_THEME", payload: newTheme });
   };
 
   const setData = (newData) => {
-    dispatch({ type: 'SET_DATA', payload: newData });
+    dispatch({ type: "SET_DATA", payload: newData });
   };
 
   const contextData = useMemo(() => {
-    return { theme: state.theme, toggleTheme: toggleTheme, data: state.data, setData: setData };
+    return {
+      theme: state.theme,
+      toggleTheme: toggleTheme,
+      data: state.data,
+      setData: setData,
+    };
   }, [state.theme, state.data]);
+
+
+  
 
   return (
     <ContextGlobal.Provider value={contextData}>
@@ -41,8 +57,8 @@ export const ContextProvider = ({ children }) => {
   );
 };
 
-
-//useMemo te permite guardar el resultado de una función y volver a utilizarlo solo si los parámetros que recibe la función han cambiado, evitando así que la función se ejecute de nuevo en cada renderizado.
-//El ContextProvider es responsable de proveer el Contexto creado con el método createContext() a todos los componentes que lo necesitan. 
+//useMemo me permite guardar el resultado de una función y volver a utilizarlo solo si los parámetros que recibe la función han cambiado, evitando así que la función se ejecute de nuevo en cada renderizado.
+//El ContextProvider es responsable de proveer el Contexto creado con el método createContext() a todos los componentes que lo necesitan.
 // También permite definir el valor inicial del Contexto y actualizar ese valor en el futuro a través de la función setState.
-//Resumne:Forma de compartir información entre componente.
+//Resumne:Forma de compartir información entre componentes.
+//Consumo la API y la info la comparto a fav
